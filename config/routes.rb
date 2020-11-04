@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     get 'organizations', to: 'users/registrations#new_organization'
     post 'organizations', to: 'users/registrations#create_organization'
   end
-  root to: 'notices#index'
+  root to: 'rooms#index'
 end
