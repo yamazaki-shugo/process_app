@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'notices/index'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  devise_scope :user do
+    get 'organizations', to: 'users/registrations#new_organization'
+    post 'organizations', to: 'users/registrations#create_organization'
+  end
+  root to: 'notices#index'
 end
