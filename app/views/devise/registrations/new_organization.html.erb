@@ -1,0 +1,44 @@
+<h2>組織情報登録</h2>
+
+<%= form_for @organization do |f| %>
+  <%= render "devise/shared/error_messages", resource: @organization %>
+
+  <div class="field">
+    <%= f.label :組織名 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :職種 %><br />
+    <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :都道府県 %><br />
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :市区町村 %><br />
+    <%= f.text_field :municipality %>
+  </div>
+
+  <div class="field">
+    <%= f.label :番地 %><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録" %>
+  </div>
+<% end %>
