@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'notices/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -8,4 +7,10 @@ Rails.application.routes.draw do
     post 'organizations', to: 'users/registrations#create_organization'
   end
   root to: 'rooms#index'
+  resources :rooms, only: [:index, :new, :create, :update] do
+    member do 
+      get 'asign'
+    end
+    resources :notices, only: [:index, :create]
+  end
 end

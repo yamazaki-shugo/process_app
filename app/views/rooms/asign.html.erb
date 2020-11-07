@@ -1,0 +1,30 @@
+<div class="room_form">
+  <h1>工事に参加</h1>
+  <%= form_with model: @room, local: true do |f| %>
+    <div class="room_form_field">
+      <div class="room_form_field_left">
+        <%= f.label :現場名, class: 'room_form_label' %>
+      </div>
+      <div class="room_form_field_right">
+        <%= @room.name %>
+      </div>
+    </div>
+    <div class="room_form_field">
+      <div class="room_form_field_left">
+        <%= f.label :パスワード, class: 'room_form_label' %>
+      </div>
+      <div class="room_form_field_right">
+        <%= f.password_field :password, class: 'room_name', placeholder: 'パスワードを入力してください' %>
+      </div>
+    </div>
+    
+    <input name="room[user_ids]" type="hidden" value=<%= current_user.id %>>
+    <div class="room_form_field">
+      <div class="room_form_field_left"></div>
+      <div class="room form_field_right">
+        <%= f.submit "参加", class: 'room_form_action_btn' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
