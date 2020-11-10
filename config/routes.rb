@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     member do 
       get 'asign'
     end
-    resources :notices, only: [:index, :create]
+    resources :notices, only: [:index, :new, :create]
   end
 end

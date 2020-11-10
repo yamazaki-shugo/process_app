@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
       unless RoomUser.exists?(user_id: current_user.id, room_id: params[:id])
         @room_user.save
       end
-      redirect_to room_notices_path(params[:id])
+      redirect_to new_room_notice_path(params[:id])
     else
       render :asign
     end
