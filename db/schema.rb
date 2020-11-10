@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2020_11_04_060953) do
 
   create_table "notices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
     t.text "content", null: false
     t.integer "user_id"
     t.integer "room_id"

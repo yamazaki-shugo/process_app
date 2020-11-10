@@ -4,12 +4,12 @@
   <%= render "devise/shared/error_messages", resource: @organization %>
 
   <div class="field">
-    <%= f.label :組織名 %><br />
+    <%= f.label :部活名 %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :職種 %><br />
+    <%= f.label :役割 %><br />
     <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}) %>
   </div>
 
