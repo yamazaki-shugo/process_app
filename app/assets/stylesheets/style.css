@@ -43,7 +43,7 @@ a {
 
 .header {
   background-color: lightgray;
-  margin-bottom: 48px;
+  /* margin-bottom: 48px; */
   padding: 20px 10px;
 }
 
@@ -123,4 +123,11 @@ a {
 .form__btn:hover {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
+}
+
+/* room */
+.room_wraper {
+  width: 100%;
+  height: 100vh;
+  background-color: bisque;
 }

@@ -1,0 +1,37 @@
+<div class="room_form">
+  <h2>ルーム作成</h2>
+  <%= form_with model: @room, local: true do |f| %>
+    <div class="room_form_field">
+      <div class="room_form_field_left">
+        <%= f.label :チーム名, class: 'room_form_label' %>
+      </div>
+      <div class="room_form_field_right">
+        <%= f.text_field :name, class: 'room_name', placeholder: 'チーム名を入力してください' %>
+      </div>
+    </div>
+    <div class="room_form_field">
+      <div class="room_form_field_left">
+        <%= f.label :パスワード, class: 'room_form_label' %>
+      </div>
+      <div class="room_form_field_right">
+        <%= f.password_field :password, class: 'room_name', placeholder: 'パスワードを入力してください' %>
+      </div>
+    </div>
+    <div class="room_form_field">
+      <div class="room_form_field_left">
+        <%= f.label :パスワード確認, class: 'room_form_label' %>
+      </div>
+      <div class="room_form_field_right">
+        <%= f.password_field :password_confirmation, class: 'room_name', placeholder: 'もう一度パスワードを入力してください' %>
+      </div>
+    </div>
+    <input name="room[user_ids]" type="hidden" value=<%= current_user.id %>>
+    <div class="room_form_field">
+      <div class="room_form_field_left"></div>
+      <div class="room form_field_right">
+        <%= f.submit "登録", class: 'room_form_action_btn' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
