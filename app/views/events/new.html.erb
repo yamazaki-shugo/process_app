@@ -1,0 +1,36 @@
+
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">スケジュールを入力</h2>
+    <%= form_with(model: [@room, @event], local: true) do |f| %>
+
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="new-items">
+      <div class="weight-bold-text">
+        内容
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_field :title, class:"items-text", id:"item-name" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          詳細
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :content, class:"items-text", id:"item-info" %>
+      </div>
+    </div>
+
+    <div class="new-items">
+      <div class="weight-bold-text">
+        日程
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.datetime_select :start_time, {use_month_numbers: true, start_year: Date.today.year, datetime_separator: '<div class="weight-bold-text">時間</div>'},{class: "form-control bootstrap-date", id: 'ymd-date'} %>
+    </div>
+
+    <div class="sell-btn-contents">
+      <%= f.submit "登録" ,class:"sell-btn" %>
+    </div>
+  
+</div>
+<% end %>

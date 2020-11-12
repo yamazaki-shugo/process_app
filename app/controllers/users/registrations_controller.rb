@@ -4,30 +4,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  def new 
+  def new
     @user = User.new
   end
 
   def create
     @user = User.new(sign_up_params)
-    unless @user.valid?
-      render :new and return
-    end
-    session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    render :new and return unless @user.valid?
+
+    session['devise.regist_data'] = { user: @user.attributes }
+    session['devise.regist_data'][:user]['password'] = params[:user][:password]
     @organization = @user.build_organization
     render :new_organization
   end
 
   def create_organization
-    @user = User.new(session["devise.regist_data"]["user"])
+    @user = User.new(session['devise.regist_data']['user'])
     @organization = Organization.new(organization_params)
-      unless @organization.valid?
-        render :new_organization and return
-      end
+    render :new_organization and return unless @organization.valid?
+
     @user.build_organization(@organization.attributes)
     @user.save
-    session["devise.regist_data"]["user"].clear
+    session['devise.regist_data']['user'].clear
     sign_in(:user, @user)
     redirect_to root_path
   end

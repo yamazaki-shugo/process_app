@@ -1,6 +1,5 @@
 class NoticesController < ApplicationController
   def index
-    
   end
 
   def new
@@ -14,7 +13,7 @@ class NoticesController < ApplicationController
     if @notice.save
       redirect_to new_room_notice_path(params[:room_id
         ])
-    else  
+    else
       @notices = @room.notices.includes(:user)
       render :new
     end

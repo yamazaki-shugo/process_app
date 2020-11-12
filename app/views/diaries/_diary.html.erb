@@ -1,0 +1,11 @@
+
+<div class="card">
+  <%= link_to image_tag(diary.image.variant(resize: '500x500'), class: :card__img ), room_diary_path(params[:room_id], diary.id), method: :get %>
+  <div class="card__body">
+    <%= link_to diary.date, room_diary_path(params[:room_id], diary.id), method: :get, class: :card__title%>
+    <p class="card__summary">
+      <%= diary.objective %>
+    </p>
+    <%= "by #{diary.user.nickname}" %>
+  </div>
+</div>

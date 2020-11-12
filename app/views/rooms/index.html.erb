@@ -1,22 +1,28 @@
-<div class="room_wraper">
+<%= render "shared/header" %>
 
-  <div class="room_make">
-    <%= link_to "ルーム作成", new_room_path %>
+<div class="wrapper">
+  <div class="side-bar">
+    <%= render "notices/side_bar" %>
   </div>
+</div>
+  <%# <div class="room_make">
+    <%= link_to "ルーム作成", new_room_path %>
+  <%# </div> %>
 
-  
+   
 
-  <div class="room_table">
+  <%# <div class="room_table">
     <h2>工事一覧</h2>
     <% @rooms.each do |room| %>
-      <div class="room">
-        <div class="room_name">
-          <%= link_to room.name, asign_room_path(room.id) %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <%# <div class="room"> %>
+        <%# <div class="room_name"> %>
+          <%# <%= link_to room.name, asign_room_path(room.id) %>
+        <%# </div> %>
+      <%# </div> %>
+    <%# <% end %> 
+  <%# </div> %> 
 
-<div id="calendar"></div>
+
 
 </div>
+<%# <%= render partial: "shared/footer" %> 

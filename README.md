@@ -81,3 +81,23 @@
 
 - belongs_to :user
 - belongs_to :room
+
+## diaries テーブル
+
+| Column             | Type       | Options           |
+| ------------------ | ---------- | ----------------- |
+| date               | date       | null: false       |
+| objective          | text       | null: false       |
+| practice_menu      | text       | null: false       |
+| discovery          | text       | null: false       |
+| reflection         | text       | null: false       |
+| task               | text       | null: false       |
+| other              | text       |                   |
+| mvp                | string     |                   |
+| user               | references | foreign_key: true |
+| room               | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :room

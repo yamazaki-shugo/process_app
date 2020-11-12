@@ -1,0 +1,58 @@
+<%= form_with model: [@room, @diary], local: true do |f|%>
+
+<%= render 'shared/error_messages', model: f.object %>
+
+  <div class="field">
+    <%= f.label :date, "日付" %><br />
+    <%= f.date_field :date, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :objective, "今日の目標" %><br />
+    <%= f.text_area :objective, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :practice_menu, "練習メニュー" %><br />
+    <%= f.text_area :practice_menu, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :discovery, "発見・気づいたこと" %><br />
+    <%= f.text_area :discovery, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reflection, "今日の反省" %><br />
+    <%= f.text_area :reflection, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :task, "今後の課題" %><br />
+    <%= f.text_area :task, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :other, "その他" %><br />
+    <%= f.text_area :other, class: :form__text %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mvp, "今日のMVP" %><br />
+    <select name="diary[mvp]">
+      <option value="">今日のMVPを決めましょう</option>
+      <% @room.users.each do |user| %>
+        <option value=<%= "#{user.nickname}" %>><%= user.nickname %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "今日の一枚" %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn  %>
+  </div>
+<% end %>

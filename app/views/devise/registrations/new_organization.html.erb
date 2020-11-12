@@ -1,44 +1,69 @@
-<h2>組織情報登録</h2>
-
-<%= form_for @organization do |f| %>
+<%= render "shared/second-header" %>
+<%= form_for(@organization, class: 'registration-main') do |f| %>
   <%= render "devise/shared/error_messages", resource: @organization %>
 
-  <div class="field">
-    <%= f.label :部活名 %><br />
-    <%= f.text_field :name, autofocus: true %>
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        住所情報入力
+      </h1>
+    </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">部活名</label>
+    </div>
+    <%= f.text_field :name, class:"input-default", id:"name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :役割 %><br />
-    <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}) %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">役割</label>
+    </div>
+    <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:"input-default" }) %>
   </div>
 
-  <div class="field">
-    <%= f.label :電話番号 %><br />
-    <%= f.text_field :phone_number %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">電話番号</label>
+    </div>
+    <%= f.text_field :phone_number, class:"input-default", id:"phone_number" %>
   </div>
 
-  <div class="field">
-    <%= f.label :郵便番号 %><br />
-    <%= f.text_field :postal_code %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">郵便番号</label>
+    </div>
+    <%= f.text_field :postal_code, class:"input-default", id:"postal_code" %>
   </div>
 
-  <div class="field">
-    <%= f.label :都道府県 %><br />
-    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}) %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">都道府県</label>
+    </div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"input-default" }) %>
   </div>
 
-  <div class="field">
-    <%= f.label :市区町村 %><br />
-    <%= f.text_field :municipality %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">市区町村</label>
+    </div>
+    <%= f.text_field :municipality, class:"input-default", id:"postal_code" %>
   </div>
 
-  <div class="field">
-    <%= f.label :番地 %><br />
-    <%= f.text_field :address %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">番地</label>
+    </div>
+    <%= f.text_field :address, class:"input-default", id:"postal_code" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+    </div>
+  </div>
+
+  <div class='register-btn'>
+    <%= f.submit "会員登録" ,class:"register-red-btn" %>
   </div>
 <% end %>

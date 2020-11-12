@@ -1,0 +1,70 @@
+<main class="main">
+  <div class="inner">
+    <div class="prototype__wrapper">
+      <p class="prototype__hedding">
+        <%= @diary.date%>
+      </p>
+      <%= "by #{@diary.user.nickname}" %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @diary.user_id %>
+        <div class="prototype__manage">
+          <%= link_to "編集する", edit_room_diary_path(@room.id, @diary.id), class: :prototype__btn %>
+          <%= link_to "削除する", room_diary_path(@room.id, @diary.id), method: :delete, class: :prototype__btn %>
+        </div>
+      <% end %>
+      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
+      <div class="prototype__image">
+        <div class="prototype__detail">
+         <p class="detail__title">今日の1枚</p>
+          <%= image_tag @diary.image %>
+        </div>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">目標</p>
+          <p class="detail__message">
+            <%= @diary.objective %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">練習メニュー</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.practice_menu.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">発見、気づいたこと</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.discovery.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">今日の反省</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.reflection.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">今後の課題</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.task.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">その他</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.other.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+        <div class="prototype__detail">
+          <p class="detail__title">今日のMVP</p>
+          <p class="detail__message">
+            <%= safe_join(@diary.mvp.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+      </div>
+                
+      </div>
+    </div>
+  </div>
+</main>

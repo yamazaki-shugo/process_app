@@ -1,37 +1,46 @@
-<div class="room_form">
-  <h2>ルーム作成</h2>
-  <%= form_with model: @room, local: true do |f| %>
-    <div class="room_form_field">
-      <div class="room_form_field_left">
-        <%= f.label :チーム名, class: 'room_form_label' %>
-      </div>
-      <div class="room_form_field_right">
-        <%= f.text_field :name, class: 'room_name', placeholder: 'チーム名を入力してください' %>
-      </div>
-    </div>
-    <div class="room_form_field">
-      <div class="room_form_field_left">
-        <%= f.label :パスワード, class: 'room_form_label' %>
-      </div>
-      <div class="room_form_field_right">
-        <%= f.password_field :password, class: 'room_name', placeholder: 'パスワードを入力してください' %>
-      </div>
-    </div>
-    <div class="room_form_field">
-      <div class="room_form_field_left">
-        <%= f.label :パスワード確認, class: 'room_form_label' %>
-      </div>
-      <div class="room_form_field_right">
-        <%= f.password_field :password_confirmation, class: 'room_name', placeholder: 'もう一度パスワードを入力してください' %>
-      </div>
-    </div>
-    <input name="room[user_ids]" type="hidden" value=<%= current_user.id %>>
-    <div class="room_form_field">
-      <div class="room_form_field_left"></div>
-      <div class="room form_field_right">
-        <%= f.submit "登録", class: 'room_form_action_btn' %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render 'shared/second-header' %>
+  <%= form_with model: @room, class: 'registration-main', local: true do |f| %>
 
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        ルーム情報入力
+      </h1>
+    </div>
+
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">ルームネーム</label>
+      </div>
+      <%= f.text_area :name, class:"input-default", id:"name", autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">パスワード</label>
+      </div>
+      <%= f.password_field :password, class:"input-default", id:"password", placeholder:"8文字以上の半角英数字" %>
+      <p class='info-text'>※英字と数字の両方を含めて設定してください</p>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">パスワード(確認)</label>
+      </div>
+      <%= f.password_field :password_confirmation, class:"input-default", id:"password-confirmation", placeholder:"同じパスワードを入力して下さい" %>
+    </div>
+
+      <input name="room[user_ids]" type="hidden" value=<%= current_user.id %>>
+    <div class="form-group">
+      <div class='form-text-wrap'>  
+      </div>  
+    </div>
+    <div class='register-btn'>
+      <%= f.submit "ルーム作成" ,class:"register-red-btn" %>
+    </div>
+
+    <% end %>
+  </div>
+<%= render 'shared/second-footer' %>

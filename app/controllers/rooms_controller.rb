@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     if @room.save
       redirect_to root_path
-    else  
+    else
       render :new
     end
   end
@@ -26,9 +26,7 @@ class RoomsController < ApplicationController
     @room_user = RoomUser.new(user_id: current_user.id, room_id: params[:id])
 
     if @room.authenticate(params[:room][:password])
-      unless RoomUser.exists?(user_id: current_user.id, room_id: params[:id])
-        @room_user.save
-      end
+      @room_user.save unless RoomUser.exists?(user_id: current_user.id, room_id: params[:id])
       redirect_to new_room_notice_path(params[:id])
     else
       render :asign
@@ -40,6 +38,4 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:name, :password, :user_ids)
   end
-
-  
 end

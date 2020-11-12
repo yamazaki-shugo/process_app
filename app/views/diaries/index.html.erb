@@ -1,0 +1,10 @@
+<%= render "shared/header" %>
+
+<main class="main">
+  <div class="inner">
+    <%= link_to "日誌を書く", new_room_diary_path(params[:room_id])%>
+    <div class="card__wrapper">
+      <%= render partial: 'diary', collection: @diaries %>
+    </div>
+  </div>
+</main>

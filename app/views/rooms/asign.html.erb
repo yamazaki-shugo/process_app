@@ -1,30 +1,40 @@
-<div class="room_form">
-  <h1>工事に参加</h1>
-  <%= form_with model: @room, local: true do |f| %>
-    <div class="room_form_field">
-      <div class="room_form_field_left">
-        <%= f.label :現場名, class: 'room_form_label' %>
-      </div>
-      <div class="room_form_field_right">
-        <%= @room.name %>
-      </div>
-    </div>
-    <div class="room_form_field">
-      <div class="room_form_field_left">
-        <%= f.label :パスワード, class: 'room_form_label' %>
-      </div>
-      <div class="room_form_field_right">
-        <%= f.password_field :password, class: 'room_name', placeholder: 'パスワードを入力してください' %>
-      </div>
-    </div>
+        <%= render 'shared/second-header' %>
+        <%= form_with model: @room, local: true do |f| %>
+
+        <div class='form-wrap'>
+          <div class='form-header'>
+            <h1 class='form-header-text'>
+              ルームのパスワードを入力
+            </h1>
+          </div>
+
+          <%= render 'shared/error_messages', model: f.object %>
+
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">チーム名</label>
+            </div>
+            <div class="input-default">
+              <%= @room.name %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class='form-text-wrap'>
+              <label class="form-text">パスワード</label>
+            </div>
+            <%= f.password_field :password, class:"input-default", id:"age" %>
+          </div>
+
+          
+          <div class="form-group"></div>
+
+          <div class="register-btn">
+            <%= f.submit "ルームに参加", class:"register-red-btn" %>
+          </div>
+        </div>
+        <% end %>
     
-    <input name="room[user_ids]" type="hidden" value=<%= current_user.id %>>
-    <div class="room_form_field">
-      <div class="room_form_field_left"></div>
-      <div class="room form_field_right">
-        <%= f.submit "参加", class: 'room_form_action_btn' %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render "shared/second-footer"%>
+
 
