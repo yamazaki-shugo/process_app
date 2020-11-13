@@ -1,10 +1,10 @@
+<%= render 'shared/header'%>
 <main class="main">
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
         <%= @diary.date%>
       </p>
-      <%= "by #{@diary.user.nickname}" %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
       <% if user_signed_in? && current_user.id == @diary.user_id %>
         <div class="prototype__manage">
@@ -62,6 +62,7 @@
             <%= safe_join(@diary.mvp.split("\n"), tag(:br)) %>
           </p>
         </div>
+        
       </div>
                 
       </div>
