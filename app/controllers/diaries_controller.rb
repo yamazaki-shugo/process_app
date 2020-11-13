@@ -11,7 +11,6 @@ class DiariesController < ApplicationController
   def create
     @room = Room.find(params[:room_id])
     @diary = Diary.new(diary_params)
-    binding.pry
     if @diary.save
       redirect_to room_diaries_path(@room.id)
     else  

@@ -11,5 +11,6 @@ class Diary < ApplicationRecord
     validates :reflection
     validates :task
     validates :mvp
+    validates :image
   end
 end
