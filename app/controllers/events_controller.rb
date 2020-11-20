@@ -1,41 +1,39 @@
 class EventsController < ApplicationController
+  before_action :room_find
+  before_action :events_get, only: [:index, :show]
+  before_action :event_get, only: [:show, :destroy, :edit, :update]
+
   def index
-    @events = Event.all
   end
 
   def new
-    @room = Room.find(params[:room_id])
     @event = Event.new
   end
 
   def show
-    @event = Event.find(params[:room_id], params[:id])
   end
 
   def create
-    @room = Room.find(params[:room_id])
-    @event = Event.new(event_parameter)
+    @event = @room.events.new(event_params)
     if @event.save
       redirect_to room_events_path(params[:room_id])
     else  
+      @events = @room.events.includes(:user)
       render :new
     end
   end
 
   def destroy
-    @event = Event.find(params[:room_id], params[:id])
     @event.destroy
-    redirect_to room_events_path(params[:room_id]), notice: '削除しました'
+    redirect_to room_events_path(params[:room_id])
   end
 
   def edit
-    @event = Event.find(params[:room_id], params[:id])
   end
 
   def update
-    @event = Event.find(params[:room_id], params[:id])
-    if @event.update(event_parameter)
-      redirect_to room_events_path(params[:room_id]), notice: '編集しました'
+    if @event.update(event_params)
+      redirect_to room_event_path(params[:room_id], @event.id)
     else
       render 'edit'
     end
@@ -43,7 +41,19 @@ class EventsController < ApplicationController
 
   private
 
-  def event_parameter
-    params.require(:event).permit(:title, :content, :start_time).merge(user_id: current_user.id, room_id: params[:room_id])
+  def event_params
+    params.require(:event).permit(:title, :content, :place, :start_time).merge(user_id: current_user.id, room_id: params[:room_id])
+  end
+
+  def room_find
+    @room = Room.find(params[:room_id])
+  end
+
+  def event_get 
+    @event = @room.events.find(params[:id])
+  end
+
+  def events_get
+    @events = @room.events.includes(:user)
   end
 end

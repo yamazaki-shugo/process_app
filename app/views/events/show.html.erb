@@ -1,19 +1,81 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
+  <div class="side-bar">
+    <div class="side-bar-header">
+      <div class="header-name">
+        <%= link_to current_user.nickname, "#"%>
+      </div>
+      <div class="create-room">
+      </div>
+    </div>
 
-<p>
-  <strong>タイトル</strong>
-  <%= @event.title %>
-</p>
+    <div class="schedule-rooms">
+    <span class="month-schedule">〜今月のスケジュール〜</span>
+      <% @events.where(start_time: Time.now.all_month).each do |event| %>
+        <div class="schedule-room">
+          <div class="schedule-room-name">
+            <%= event.start_time.strftime("%m/%d %H:%M") %><br>
+            <%= link_to event.title, room_event_path(params[:room_id], event.id) %>
+          </div>
+        </div>
+      <% end %>  
+    </div>
 
-<p>
-  <strong>時間</strong>
-  <%= @event.start_time.strftime("%Y-%m-%d %H:%M") %>
-</p>
+  </div>
 
-<p>
-  <strong>内容</strong>
-  <%= @event.content %>
-</p>
+  <div class="chat">
+    <div class="chat-header">
+      <div class="left-header">
+        <div class="group">
+          スケジュール
+        </div>
+      </div>
+      <div class="right-header">
+        <div class="chat-end-btn">
+          <%= link_to "チャット", room_notices_path(params[:room_id]) %>
+          <%= link_to "日誌", room_diaries_path(params[:room_id]) %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="schedule">
+    <div class="schedule-detail">
+    <p id="notice"><%= notice %></p>
+      <p>
+        <strong>日程：</strong>
+        <%= @event.start_time.strftime("%Y-%m-%d %H:%M") %>
+      </p>
 
-<%= link_to 'Edit', edit_room_event_path(params[:room_id], @event) %> |
-<%= link_to 'Back', room_events_path(params[:room_id]) %>
+      <p>
+        <strong>集合場所：</strong>
+        <%= @event.place %>
+      </p>
+
+      <p>
+        <strong>内容：</strong>
+        <%= @event.title %>
+      </p>
+
+      <p>
+        <strong>詳細：</strong>
+        <%= @event.content %>
+      </p>
+
+      <%= link_to '変更', edit_room_event_path(params[:room_id], @event.id) %> |
+      <%= link_to '戻る', room_events_path(params[:room_id]) %>
+      </div>
+      
+      <div class="event">
+        <%= link_to 'スケジュールを登録', new_room_event_path(params[:room_id]), class: "schedule__btn" %>
+        <%= month_calendar events: @events do |date, events| %>
+        <%= date.day %>
+        <% events.each do |event| %>
+      <div>
+        <%= link_to event.title, room_event_path(params[:room_id], event.id) %>
+        <% end %>
+      <% end %>
+    </div> 
+  </div>
+</div>
+
+
+

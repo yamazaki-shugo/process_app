@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  background-color: lightsteelblue;
 }
 
 .side-bar {
@@ -24,30 +25,44 @@
 }
 
 .create-room {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .create-room a {
   color: deepskyblue;
-  padding: 14px;
+  padding: 12px;
   border: 1px solid lightblue;
+  border-radius: 10px;
   text-decoration: none;
 }
 
 .rooms {
   background-color: #2f3e51;
   height: calc(100vh - 100px);
-  padding: 0 20px;
+  padding: 20px 20px;
   overflow: scroll;
+  text-align: center;
 }
 
 .room {
-  padding: 20px 0 40px 0;
+  padding: 20px 0 10px 0;
+  
+}
+
+.room-name  {
+  color: white;
+  text-decoration: none;
+  overflow: scroll;
 }
 
 .room-name a {
   color: white;
   text-decoration: none;
+  overflow: scroll;
+}
+
+.room-search-form {
+  margin-top: 20px;
 }
 
 .chat {

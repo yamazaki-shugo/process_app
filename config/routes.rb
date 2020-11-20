@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     get 'organizations', to: 'users/registrations#new_organization'
     post 'organizations', to: 'users/registrations#create_organization'
   end
+
   root to: 'rooms#index'
   resources :users, only: [:edit, :update]
   resources :rooms, only: [:index, :new, :create, :update] do
-    member do 
-      get 'asign'
-    end
+      get 'asign', on: :member
+      get 'search', on: :collection
     resources :notices, only: [:index, :new, :create]
     resources :events
     resources :diaries

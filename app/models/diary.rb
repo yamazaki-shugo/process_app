@@ -4,7 +4,7 @@ class Diary < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :date
+    validates :date, uniqueness: true
     validates :objective
     validates :practice_menu
     validates :discovery

@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
   def index
     @rooms = Room.all
   end
@@ -11,7 +10,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
-      redirect_to root_path
+      redirect_to room_notices_path(@room.id)
     else
       render :new
     end
@@ -27,9 +26,17 @@ class RoomsController < ApplicationController
 
     if @room.authenticate(params[:room][:password])
       @room_user.save unless RoomUser.exists?(user_id: current_user.id, room_id: params[:id])
-      redirect_to new_room_notice_path(params[:id])
+      redirect_to room_notices_path(params[:id])
     else
       render :asign
+    end
+  end
+
+  def search
+    if params[:name].present?
+      @rooms = Room.where('name LIKE ?', "%#{params[:name]}%")
+    else
+      @rooms = Room.none #空の結果を返す
     end
   end
 

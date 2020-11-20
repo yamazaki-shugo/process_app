@@ -1,6 +1,4 @@
-<%= render "shared/second-header" %>
-<%= form_for(@organization, class: 'registration-main') do |f| %>
-  <%= render "devise/shared/error_messages", resource: @organization %>
+<%= form_with model: @organization, class: 'registration-main', local: true do |f| %>
 
   <div class='form-wrap'>
     <div class='form-header'>
@@ -9,8 +7,11 @@
       </h1>
     </div>
 
+    <%= render 'shared/error_messages', model: f.object %>
+
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">部活名</label>
     </div>
     <%= f.text_field :name, class:"input-default", id:"name" %>
@@ -18,6 +19,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">役割</label>
     </div>
     <%= f.collection_select(:occupation_id, Occupation.all, :id, :name, {}, {class:"input-default" }) %>
@@ -25,6 +27,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">電話番号</label>
     </div>
     <%= f.text_field :phone_number, class:"input-default", id:"phone_number" %>
@@ -32,6 +35,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">郵便番号</label>
     </div>
     <%= f.text_field :postal_code, class:"input-default", id:"postal_code" %>
@@ -39,6 +43,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">都道府県</label>
     </div>
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"input-default" }) %>
@@ -46,6 +51,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">市区町村</label>
     </div>
     <%= f.text_field :municipality, class:"input-default", id:"postal_code" %>
@@ -53,6 +59,7 @@
 
   <div class="form-group">
     <div class='form-text-wrap'>
+      <span class="indispensable">必須</span>
       <label class="form-text">番地</label>
     </div>
     <%= f.text_field :address, class:"input-default", id:"postal_code" %>

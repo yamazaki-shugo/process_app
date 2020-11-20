@@ -1,5 +1,4 @@
-        <%= render 'shared/second-header' %>
-        <%= form_with model: @room, local: true do |f| %>
+        <%= form_with model: @room, class: 'room-make', local: true do |f| %>
 
         <div class='form-wrap'>
           <div class='form-header'>
@@ -35,6 +34,5 @@
         </div>
         <% end %>
     
-<%= render "shared/second-footer"%>
 
 

@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_055139) do
     t.string "title"
     t.text "content"
     t.datetime "start_time"
+    t.string "place"
     t.bigint "user_id"
     t.bigint "room_id"
     t.datetime "created_at", precision: 6, null: false

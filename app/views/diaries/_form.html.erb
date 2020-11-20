@@ -39,17 +39,12 @@
 
   <div class="field">
     <%= f.label :mvp, "今日のMVP" %><br />
-    <select name="diary[mvp]">
-      <option value="">今日のMVPを決めましょう</option>
-      <% @room.users.each do |user| %>
-        <option value=<%= "#{user.nickname}" %>><%= user.nickname %></option>
-      <% end %>
-    </select>
+    <%= f.collection_select :mvp, @room.users.all, :nickname, :nickname, {include_blank: "今日のMVPを決めましょう"}, {class: :form__text} %> 
   </div>
 
   <div class="field">
     <%= f.label :image, "今日の一枚" %><br />
-    <%= f.file_field :image %>
+    <%= f.file_field :image, class: :form__text %>
   </div>
 
   <div class="actions">
