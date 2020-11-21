@@ -5,10 +5,12 @@
         <%= current_user.nickname %>
       </div>
       <div class="create-room"> 
+        <%= link_to 'ログアウト', destroy_user_session_path %>
       </div>
     </div>
 
     <div class="diary-rooms">
+      <span class="diary-list">〜日誌一覧〜</span>
       <%= render partial: 'diary', collection: @diaries %>
     </div>
   </div>
@@ -38,7 +40,3 @@
     </main>
   </div>
 </div>
-
-
-
-

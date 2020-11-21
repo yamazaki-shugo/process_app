@@ -1,10 +1,10 @@
 class DiariesController < ApplicationController
   before_action :room_find
   before_action :diary_get, only: [:show, :edit, :update, :destroy]
+  before_action :diaries_get, only: [:index, :show, :edit]
 
   def index
     @diary = Diary.new
-    @diaries = @room.diaries.includes(:user).order("date DESC")
   end
 
   def new
@@ -15,7 +15,8 @@ class DiariesController < ApplicationController
     if @diary.save
       redirect_to room_diaries_path(@room.id)
     else  
-      render :new
+      diaries_get
+      render :index
     end
   end
 
@@ -29,6 +30,7 @@ class DiariesController < ApplicationController
     if @diary.update(diary_params)
       redirect_to room_diary_path(@room.id, @diary.id)
     else 
+      diaries_get
       render :edit
     end
   end
@@ -51,6 +53,10 @@ class DiariesController < ApplicationController
 
   def diary_get
     @diary = @room.diaries.find(params[:id])
+  end
+
+  def diaries_get
+    @diaries = @room.diaries.includes(:user).order("date DESC")
   end
 
 end

@@ -2,9 +2,10 @@
   <div class="side-bar">
     <div class="side-bar-header">
       <div class="header-name">
-        <%= link_to current_user.nickname, "#"%>
+        <%= current_user.nickname %>
       </div>
       <div class="create-room">
+        <%= link_to 'ログアウト', destroy_user_session_path %>
       </div>
     </div>
 

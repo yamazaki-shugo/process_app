@@ -1,70 +1,110 @@
-<main class="main">
-  <div class="inner">
-    <div class="prototype__wrapper">
-      <p class="prototype__hedding">
-        <%= @diary.date%>
-      </p>
-      
-      <% if user_signed_in? && current_user.id == @diary.user_id %>
-        <div class="prototype__manage">
-          <%= link_to "編集する", edit_room_diary_path(@room.id, @diary.id), class: :prototype__btn %>
-          <%= link_to "削除する", room_diary_path(@room.id, @diary.id), method: :delete, class: :prototype__btn %>
-        </div>
-      <% end %>
-      
-      <div class="prototype__image">
-        <div class="prototype__detail">
-         <p class="detail__title">今日の1枚</p>
-          <%= image_tag @diary.image %>
-        </div>
+<div class="wrapper">
+  <div class="side-bar">
+    <div class="side-bar-header">
+      <div class="header-name">
+        <%= current_user.nickname %>
       </div>
-      <div class="prototype__body">
-        <div class="prototype__detail">
-          <p class="detail__title">目標</p>
-          <p class="detail__message">
-            <%= @diary.objective %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">練習メニュー</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.practice_menu.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">発見、気づいたこと</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.discovery.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">今日の反省</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.reflection.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">今後の課題</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.task.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">その他</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.other.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        <div class="prototype__detail">
-          <p class="detail__title">今日のMVP</p>
-          <p class="detail__message">
-            <%= safe_join(@diary.mvp.split("\n"), tag(:br)) %>
-          </p>
-        </div>
-        
-      </div>
-                
+      <div class="create-room"> 
+        <%= link_to 'ログアウト', destroy_user_session_path %>
       </div>
     </div>
+
+    <div class="diary-rooms">
+      <span class="diary-list">〜日誌一覧〜</span>
+      <%= render partial: 'diary', collection: @diaries %>
+    </div>
   </div>
-</main>
+
+  <div class="chat">
+    <div class="chat-header">
+      <div class="left-header">
+        <div class="group">
+          日誌
+        </div>
+      </div>
+      <div class="right-header">
+        <div class="chat-end-btn">
+          <%= link_to "チャット", room_notices_path(params[:room_id]) %>
+          <%= link_to "スケジュール", room_events_path(params[:room_id]) %>
+        </div>
+      </div>
+    </div>
+   
+    <main class="main">
+      <div class="inner">
+        <div class="diary__wrapper">
+          <div class="diary-header">
+            <div class="diary__date">
+              <%= "日付：#{@diary.date}" %>
+            </div>
+            <div class="diary-name">
+              <%= "記入者：#{@diary.user.nickname}" %>
+            </div>
+          </div>
+      
+          <div class="diary__body">
+            <div class="diary-left">
+              <div class="diary__detail">
+                <p class="detail__title">目標</p>
+                <p class="detail__message">
+                  <%= @diary.objective %>
+                </p>
+              </div>
+              <div class="diary__detail">
+                <p class="detail__title">練習メニュー</p>
+                <p class="detail__message">
+                  <%= safe_join(@diary.practice_menu.split("\n"), tag(:br)) %>
+                </p>
+              </div>
+              <div class="diary__detail">
+                <p class="detail__title">発見、気づいたこと</p>
+                <p class="detail__message">
+                  <%= safe_join(@diary.discovery.split("\n"), tag(:br)) %>
+                </p>
+              </div>
+            </div>
+            <div class="diary-right">
+              <div class="diary__image">
+                <div class="diary__detail">
+                <p class="detail__title">今日の1枚</p>
+                  <%= image_tag @diary.image, class: "icon" %>
+                </div>
+              </div>
+              
+              <div class="diary__detail">
+                <p class="detail__title">今日の反省</p>
+                <p class="detail__message">
+                  <%= safe_join(@diary.reflection.split("\n"), tag(:br)) %>
+                </p>
+              </div>
+              <div class="diary__detail">
+                <p class="detail__title">今後の課題</p>
+                <p class="detail__message">
+                  <%= safe_join(@diary.task.split("\n"), tag(:br)) %>
+                </p>
+              </div>
+              <div class="diary__detail">
+                <p class="detail__title">その他</p>
+                <p class="detail__message">
+                  <%= safe_join(@diary.other.split("\n"), tag(:br)) %>
+                </p>
+              </div>
+              <div class="diary__detail">
+                <p class="detail__title">今日のMVP</p>
+                <p class="detail__message">
+                  <%= "#{safe_join(@diary.mvp.split("\n"), tag(:br))} さん!!!" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <% if user_signed_in? && current_user.id == @diary.user_id %>
+            <div class="diary__manage">
+              <%= link_to "編集する", edit_room_diary_path(@room.id, @diary.id), class: :diary__btn %>
+              <%= link_to "日誌を書く", room_diaries_path(@room.id), class: :diary__btn %>
+            </div>
+          <% end %>
+    </main>
+  </div>
+</div>

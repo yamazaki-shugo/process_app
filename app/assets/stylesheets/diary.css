@@ -1,13 +1,14 @@
 .main {
-  background-color: lightblue;
+  background-color: #fafafa;
   height: 100vh;
   overflow: scroll;
 }
 
 .diary-rooms {
+  text-align: center;
   background-color: #2f3e51;
   height: 100vh;
-  padding: 0 20px;
+  padding: 20px 20px;
   overflow: scroll;
 }
 
@@ -101,9 +102,15 @@
   margin-bottom: 40px;
 }
 .card__img {
-  margin-bottom: 16px;
+  margin: 16px 0;
 }
+
+.card__body {
+  color: white;
+}
+
 .card__title {
+  color: white;
   display: block;
   font-size: 20px;
   margin-bottom: 8px;
@@ -120,46 +127,70 @@
   text-decoration: underline;
 }
 
-
-@media (max-width: 1024px) {
-  .inner {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .page-heading {
-    font-size: 24px;
-  }
-  .card {
-    width: 48%;
-    margin-bottom: 40px;
-  }
-  .prototype_image{
-    width: 60%;
-  }
+.diary__wrapper {
+  height: auto;
+  margin: 20px auto;
+  font-size: 16px;
 }
 
- /* スマホ表示 */
-@media (max-width: 599px) {
-  .logo {
-    width: 120px;
-  }
-  .page-heading {
-    font-size: 20px;
-  }
-  .card {
-    width: 100%;
-    margin-bottom: 60px;
-  }
-  .card__title {
-    font-size: 18px;
-  }
-  .card__summary {
-    font-size: 14px;
-  }
-  .prototype_image{
-    width: 100%;
-  }
-  .table{
-    width: 100%;
-  }
+.diary-header {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+}
+
+.diary__date {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.diary__body {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.diary-left {
+  width: 50%;
+}
+
+.diary-right {
+  width: 50%;
+}
+
+.detail__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.diary__detail {
+  padding: 0.5em 1em;
+  margin: 2em 10px;
+  color: #5d627b;
+  background: white;
+  border-top: solid 5px #5d627b;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+.icon {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.detail__message {
+  padding: 0 5px;
+  word-wrap: break-word;
+  
+}
+
+.diary__manage {
+  text-align: center;
+}
+
+.diary-list {
+  color: white;
+  font-size: 16px;
+
 }

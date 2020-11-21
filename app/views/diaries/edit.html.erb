@@ -1,9 +1,43 @@
-<div class="main">
-  <div class="inner">
-    <div class="form__wrapper">
-      <h2 class="page-heading">日誌編集</h2>
-      <%# 部分テンプレートでフォームを表示する %>
-      <%= render partial: 'form' %>
+<div class="wrapper">
+  <div class="side-bar">
+    <div class="side-bar-header">
+      <div class="header-name">
+        <%= current_user.nickname %>
+      </div>
+      <div class="create-room"> 
+        <%= link_to 'ログアウト', destroy_user_session_path %>
+      </div>
     </div>
+
+    <div class="diary-rooms">
+      <span class="diary-list">〜日誌一覧〜</span>
+      <%= render partial: 'diary', collection: @diaries %>
+    </div>
+  </div>
+
+  <div class="chat">
+    <div class="chat-header">
+      <div class="left-header">
+        <div class="group">
+          日誌
+        </div>
+      </div>
+      <div class="right-header">
+        <div class="chat-end-btn">
+          <%= link_to "チャット", room_notices_path(params[:room_id]) %>
+          <%= link_to "スケジュール", room_events_path(params[:room_id]) %>
+        </div>
+      </div>
+    </div>
+
+    <main class="main">
+      <div class="inner">
+        <div class="form__wrapper">
+          <h2 class="page-heading">日誌編集</h2>
+            <%= render partial: "form" %>
+            <%= link_to "削除する", room_diary_path(@room.id, @diary.id), method: :delete, class: :diary__btn %>
+        </div>
+      </div>
+    </main>
   </div>
 </div>
